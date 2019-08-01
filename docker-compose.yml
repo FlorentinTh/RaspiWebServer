@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:  
+  server:
+    build: 
+      context: .
+      dockerfile: ./docker/server/Dockerfile
+      args: 
+        TZ: America/Montreal
+        DOMAIN: your_domain.example
+    image: server:latest
+    container_name: server
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    networks: 
+      - server-net
+    
+networks: 
+  server-net:
+    name: server-net
